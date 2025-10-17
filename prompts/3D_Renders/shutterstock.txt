@@ -1,0 +1,125 @@
+Hello Mate,
+
+Please act as an expert stock photo and vector keyworder with extensive knowledge of top stock marketplace requirements (Shutterstock, Freepik, Adobe Stock, Vecteezy).
+
+For this task, I will provide you with two main pieces of information:
+
+1.  **A list of {{END_FILE_NUMBER}} 'Graphics Generation Prompts' below.** Each of these prompts was used to create a unique graphical asset. You must consider each specific 'Graphics Generation Prompt' as the **primary source of truth for the subject matter, theme, and key visual elements** of its corresponding item.
+2.  **The 'Master Metadata Prompt' (which follows this list).** This master prompt details the required CSV output structure, column specific rules (like character limits, keyword counts, forbidden terms), style guidelines, and specific platform requirements.
+
+**Your overall task is to:**
+
+*   Generate one complete row of metadata in the CSV for **each** of the {{END_FILE_NUMBER}} 'Graphics Generation Prompts' provided.
+*   For each item:
+    *   Analyze its unique 'Graphics Generation Prompts' to understand exactly what the graphic depicts.
+    *   Then, meticulously apply all the rules, formatting, and guidelines from the subsequent 'Master Metadata Prompt' to create the `Document_Title_For_Exif`, `Shutterstock_Platform_Title`, `Long_Description_For_Exif`, `Keywords`, `Categories`, `Editorial`, `Mature Content`, `Illustration`, and other necessary metadata fields for that *specific item*. The metadata must accurately and richly reflect the subject described in its individual graphics generation prompt, while adhering to all platform rules.
+
+Please ensure you process each graphics generation prompt sequentially and generate a corresponding, compliant metadata set for each of the {{END_FILE_NUMBER}} items.
+
+-----
+
+Here are the {{END_FILE_NUMBER}} Graphics Generation Prompts ({{START_FILE_NUMBER}}-{{END_FILE_NUMBER}}):
+
+{{GRAPHICS_PROMPTS_LIST}}
+
+-----
+
+### Master Metadata Prompt: Shutterstock Specific Instructions (UPDATED COLUMN ORDER)
+
+Could you please generate Best SEO optimized metadata for these {{END_FILE_NUMBER}} 3D rendered Icon subjects ({{START_FILE_NUMBER}}-{{END_FILE_NUMBER}}) and provide it as a CSV formatted string?
+
+**The CSV string you output MUST contain the following columns, in the exact order listed.**
+The first line of the CSV output MUST be the exact header row: "Internal Tracking Filename","Filename","Document_Title_For_Exif","Shutterstock_Platform_Title","Long_Description_For_Exif","Keywords","Categories","Editorial","Mature Content","Illustration"
+DO NOT include any conversational text, introductory phrases, markdown code block fences (```csv), or other formatting outside of the raw CSV string itself. The first character of your response MUST be a double quote ("), starting the CSV header.
+
+**CRUCIAL CSV FIELD QUOTING RULES (FOR ALL DATA ROWS):**
+*   **For simplicity and consistency, ALL data fields in the CSV output (except the header row) MUST be enclosed in double quotes (`"`).**
+*   If a field's content itself contains a double quote, that double quote must be escaped by preceding it with another double quote (e.g., `""`).
+
+1.  `Internal Tracking Filename` (Please use simple sequential filenames like `1`, `2`, etc., corresponding to the order of the Graphics Generation Prompts above.)
+    *   *This column MUST be the first column in the CSV data you generate.*
+
+**Followed by the Shutterstock specific columns (These will effectively be Columns A, B, C, etc., for Shutterstock after your manual deletion of the first tracking column):**
+
+A.  `Filename`
+    *   **Generation Process:**
+        1.  First, for each Icon, create a concise and descriptive **Core Phrase** that captures its subject and **absolute key characteristics, avoiding any superfluous words.**
+        2.  The `Filename` will be derived from this **Core Phrase**. It's acceptable to include terms like "Icon" in the filename if they are part of a natural description (e.g., `Hard Hat Icon`, `Safety Vest Symbol`). **Filenames can contain spaces.**
+    *   This **must exactly match** the base filename (without extension) of the file you will upload. The correct file extension (.jpg, .png, .eps, .svg) will be added automatically by the tool based on your selection.
+
+B.  `Document_Title_For_Exif`
+    *   **Purpose:** This is for generic metadata display in file explorers (like Mac Finder's "Get Info" or Adobe Illustrator's "Document Title").
+    *   **Generation:** A **very concise, short phrase (3-8 words)** that clearly states the subject. Use proper capitalization (Title Case).
+    *   **Example:** "Isometric Hard Hat Icon", "3D Safety Vest Render"
+    *   **Constraint:** DO NOT include punctuation other than periods if absolutely necessary. No commas.
+
+C.  `Shutterstock_Platform_Title`
+    *   **Purpose:** This is the main title field specifically for the Shutterstock platform.
+    *   **Generation:** To be generated from the **Core Phrase** expanded into a concise and factual descriptive sentence (max 200 characters).
+    *   **Shutterstock Guideline:** Focus on *what the Icon depicts*.
+    *   **CSV CAUTION:** Ensure this is correctly quoted if it contains commas.
+
+D.  `Long_Description_For_Exif`
+    *   **Purpose:** This is for the longer, more detailed description field in metadata (like Adobe Illustrator's "Description" box).
+    *   **Generation:** A detailed, accurate sentence or two (up to 150-200 characters) highlighting the style, use case, and key features.
+    *   **Example:** "A high-resolution isometric 3D render of a hard hat. Features semi-matte surfaces and soft lighting, isolated on a white background."
+    *   **Constraint:** **Crucially, avoid commas within the descriptive sentences for this field to prevent parsing issues in some metadata viewers.** Use periods to separate distinct sentences if needed.
+
+E.  `Keywords`
+    *   **To be generated from:** Relevant and comprehensive keywords related to the Icon's subject, derived from the **Core Phrase** and a conceptual detailed description.
+    *   **Think deeply about how a professional designer or business owner would actively search for this specific icon.** Include not just direct terms but also synonyms, related concepts, and common use cases that a user might input into a search bar.
+    *   Incorporate elements reflecting the style: "3D render, isometric, Octane render, photorealistic, semi-matte, soft lighting, drop shadow, layered depth, clean shapes, no outlines, naturalistic tones, isolated on white, premium icon, cohesive icon system."
+    *   **Shutterstock Requirement:** Provide 35-45 relevant, comma separated English keywords.
+    *   **Shutterstock Guideline:** List the most important keywords first. Do not include trademarks for commercial content.
+    *   **CSV FORMATTING NOTE FOR 'Keywords': This field *inherently contains commas* as delimiters between individual keywords. Therefore, this entire field MUST be enclosed in double quotes (`"`) in the CSV output.**
+
+F.  `Categories`
+    *   **Selection Process:** The AI should determine the most appropriate general theme for the Icon. It can use the following "Conceptual General Categories" list as a guide to help it map the Icon's theme to the official Shutterstock categories.
+        *   **(Internal AI Guidance - Conceptual General Categories):** 1. Animals, 2. Buildings and Architecture, 3. Business, 4. Drinks, 5. The Environment, 6. States of Mind, 7. Food, 8. Graphic Resources, 9. Hobbies and Leisure, 10. Industry, 11. Landscapes, 12. Lifestyle, 13. People, 14. Plants and Flowers, 15. Culture and Religion, 16. Science, 17. Social Issues, 18. Sports, 19. Technology, 20. Transport, 21. Travel.
+    *   **SHUTTERSTOCK CRITICAL REQUIREMENT:** You **must** select **one or, optionally, two** relevant category names **EXACTLY from the official Shutterstock category list provided below**.
+        *   **Official Shutterstock Category List (USE ONLY THESE):**
+            *   Abstract
+            *   Animals/Wildlife
+            *   Arts
+            *   Backgrounds/Textures
+            *   Beauty/Fashion
+            *   Buildings/Landmarks
+            *   Business/Finance
+            *   Celebrities
+            *   Education
+            *   Food and drink
+            *   Healthcare/Medical
+            *   Holidays
+            *   Industrial
+            *   Interiors
+            *   Miscellaneous
+            *   Nature
+            *   Objects
+            *   Parks/Outdoor
+            *   People
+            *   Religion
+            *   Science
+            *   Signs/Symbols
+            *   Sports/Recreation
+            *   Technology
+            *   Transportation
+            *   Vintage
+   *   **Formatting:** If using two categories, separate them with a comma and a space within this single `Categories` column (e.g., "Nature, Signs/Symbols"). This field MUST be enclosed in double quotes (`"`) in the CSV output if two categories are used, like: `"Nature, Signs/Symbols"`.
+
+G.  `Editorial`
+    *   **Shutterstock Requirement:** Set this to "**No**" (assuming these are for commercial stock use).
+
+H.  `Mature Content`
+    *   **Shutterstock Requirement:** Set this to "**No**" (assuming these are standard Icons).
+
+I.  `Illustration`
+    *   **Shutterstock Requirement:** Set this to "**Yes**" for all these 3D rendered items.
+
+**Universal Restriction (Applies to all generated descriptive content for Shutterstock columns `Document_Title_For_Exif`, `Shutterstock_Platform_Title`, `Long_Description_For_Exif`, and `Keywords`):**
+*   Please do not add any 'Intellectual Property' or 'Recognizable Brand name' in the metadata for commercial content.
+
+**General CSV Integrity Note:**
+*   Please ensure that each piece of data for an item (e.g., its full Filename, its full Document_Title_For_Exif, its full Shutterstock_Platform_Title, its full Long_Description_For_Exif, its full list of Keywords, its Categories) resides entirely within its single, designated CSV column/cell for that row, correctly quoted as specified. Unintended column shifting due to problematic characters or incorrect quoting within a field must be avoided.
+
+**Remember the Icons adhere to our style (this should inform all descriptive content for Shutterstock columns `Document_Title_For_Exif`, `Shutterstock_Platform_Title`, `Long_Description_For_Exif`, and `Keywords`):**
+"These items are high-resolution, isometric Octane 3D renders designed as premium icons for a cohesive system. They feature stylized naturalism, semi-matte surfaces, soft ambient lighting with gentle drop shadows, layered spatial depth, clean shapes with no outlines, naturalistic and distinct color palettes, and are isolated on a pure white background. These are not flat 2D vector graphics but rather 3D rendered illustrations."

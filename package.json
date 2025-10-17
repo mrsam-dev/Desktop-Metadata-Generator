@@ -1,0 +1,71 @@
+{
+  "name": "metadata-generator",
+  "version": "1.0.0",
+  "description": "Stock Metadata Generator - Desktop Edition",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:all": "electron-builder --mac --win",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "metadata",
+    "stock-photos",
+    "exiftool",
+    "shutterstock",
+    "freepik"
+  ],
+  "author": "",
+  "license": "ISC",
+  "build": {
+    "appId": "com.yourcompany.metadata-generator",
+    "productName": "Metadata Generator",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "index.html",
+      "node_modules/**/*",
+      "prompts/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "vendor",
+        "to": "vendor",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.2.1",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "adm-zip": "^0.5.16",
+    "csv-parse": "^6.1.0",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^17.2.3",
+    "natural-sort": "^1.0.0"
+  }
+}

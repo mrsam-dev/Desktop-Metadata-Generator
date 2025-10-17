@@ -1,0 +1,87 @@
+Hello Mate,
+
+Please act as an expert stock photo and vector keyworder with extensive knowledge of top stock marketplace requirements (Shutterstock, Freepik, Adobe Stock, Vecteezy).
+
+For this task, I will provide you with two main pieces of information:
+
+1.  **A list of {{END_FILE_NUMBER}} 'Graphics Generation Prompts' below.** Each of these prompts was used to create a unique graphical asset. You must consider each specific 'Graphics Generation Prompt' as the **primary source of truth for the subject matter, theme, and key visual elements** of its corresponding item.
+2.  **The 'Master Metadata Prompt' (which follows this list).** This master prompt details the required CSV output structure, column specific rules (like character limits, keyword counts, forbidden terms), style guidelines, and specific platform requirements.
+
+**Your overall task is to:**
+
+*   Generate one complete row of metadata in the CSV for **each** of the {{END_FILE_NUMBER}} 'Graphics Generation Prompts' provided.
+*   For each item:
+    *   Analyze its unique 'Graphics Generation Prompts' to understand exactly what the graphic depicts.
+    *   Then, meticulously apply all the rules, formatting, and guidelines from the subsequent 'Master Metadata Prompt' to create the `Document_Title_For_Exif`, `Freepik_Platform_Title`, `Long_Description_For_Exif`, `tags`, `category`, and other necessary metadata fields for that *specific item*. The metadata must accurately and richly reflect the subject described in its individual graphics generation prompt, while adhering to all platform rules.
+
+Please ensure you process each graphics generation prompt sequentially and generate a corresponding, compliant metadata set for each of the {{END_FILE_NUMBER}} items.
+
+-----
+
+Here are the {{END_FILE_NUMBER}} Graphics Generation Prompts ({{START_FILE_NUMBER}}-{{END_FILE_NUMBER}}):
+
+{{GRAPHICS_PROMPTS_LIST}}
+
+-----
+
+### Master Metadata Prompt: Freepik Specific Instructions
+
+Could you please generate Best SEO optimized metadata for these {{END_FILE_NUMBER}} items ({{START_FILE_NUMBER}}-{{END_FILE_NUMBER}}) and provide it as a CSV formatted string?
+
+**The CSV string you output MUST contain the following columns, in the exact order listed.**
+The first line of the CSV output MUST be the exact header row: "Internal Tracking Filename","filename","Document_Title_For_Exif","Freepik_Platform_Title","Long_Description_For_Exif","tags","category"
+The first column (`Internal Tracking Filename`) is for my internal tracking purposes only, and I will manually remove it before using the subsequent columns with Freepik. The columns from `filename` onwards should then be formatted to be suitable for Freepik, following the specific guidelines provided for each:
+
+**CRUCIAL CSV FIELD QUOTING RULES (FOR ALL DATA ROWS):**
+*   **For simplicity and consistency, ALL data fields in the CSV output (except the header row) MUST be enclosed in double quotes (`"`).**
+*   If a field's content itself contains a double quote, that double quote must be escaped by preceding it with another double quote (e.g., `""`).
+
+1.  `Internal Tracking Filename` (Please use simple sequential filenames like `1`, `2`, etc., corresponding to the order of the Graphics Generation Prompts above.)
+    *   *This column MUST be the first column in the CSV data you generate.*
+
+**Followed by the Freepik specific columns (Note: Exact Freepik CSV column names can vary; these are common ones like `filename`, `title`, `tags`, `category`. Always verify with Freepik's latest CSV template if available):**
+
+A.  `filename` (Often lowercase for Freepik – This will be the first column for Freepik after your deletion)
+    *   **To be generated from:** A concise and descriptive core phrase.
+    *   **Freepik Requirement:** This **must exactly match** the base filename (without extension) of the file AND its corresponding .jpg preview file you will upload to Freepik. The correct file extension (.jpg, .png, .eps, .svg) will be added automatically by the tool based on your selection. Keep filenames relatively concise and descriptive.
+
+B.  `Document_Title_For_Exif`
+    *   **Purpose:** This is for generic metadata display in file explorers (like Mac Finder's "Get Info" or Adobe Illustrator's "Document Title").
+    *   **Generation:** A **very concise, short phrase (3-8 words)** that clearly states the subject. Use proper capitalization (Title Case).
+    *   **Example:** "Monochrome Shopping Bag Icon", "Abstract Graffiti Letters"
+    *   **Constraint:** DO NOT include punctuation other than periods if absolutely necessary. No commas.
+
+C.  `Freepik_Platform_Title`
+    *   **Purpose:** This is the main title field that Freepik will extract from the embedded metadata of the EPS file.
+    *   **Generation:** A concise and descriptive sentence (max 100-150 characters) that accurately describes the subject. Using terms like "Icon" or "Vector" should be natural to the description of the *subject* rather than just technical descriptors. Prioritize describing *what the Icon is*.
+    *   **Constraint:** Ensure this is in English.
+
+D.  `Long_Description_For_Exif`
+    *   **Purpose:** This is for the longer, more detailed description field in metadata (like Adobe Illustrator's "Description" box).
+    *   **Generation:** A detailed, accurate sentence or two (up to 150-200 characters) highlighting the style, use case, and key features.
+    *   **Example:** "A simple monochrome line art symbol of fog represented by layered lines. Isolated on a white background. Designed for a consistent icon pack."
+    *   **Constraint:** **Crucially, avoid commas within the descriptive sentences for this field to prevent parsing issues in some metadata viewers.** Use periods to separate distinct sentences if needed.
+E.  `tags` (Freepik often uses `tags` for keywords)
+    *   **To be generated from:** Comma separated, relevant, and comprehensive keywords, enriched by key elements from a conceptual detailed description (style, use case, features like 'Flat 2D vector illustration', 'isolated on white background').
+    *   **Think deeply about how a professional designer or business owner would actively search for this specific icon.** Include not just direct terms but also synonyms, related concepts, and common use cases that a user might input into a search bar.
+    *   **Freepik Requirement:** Provide **5 to 50 English keywords/tags**, separated by commas.
+    *   **Freepik Guideline:** List keywords in order of relevance. Focus on being descriptive and objective. Avoid keyword spamming.
+    *   **CSV FORMATTING NOTE FOR 'tags': This field *inherently contains commas* as delimiters between individual keywords. Therefore, this entire field MUST be enclosed in double quotes (`"`) in the CSV output.**
+F.  `category` (This is highly Freepik specific and the AI's selection will need careful review)
+    *   **To be generated by attempting to map from a general category idea to what might be a general Freepik category.** (Your conceptual general categories: 1. Animals, 2. Buildings and Architecture, 3. Business, ..., 21. Travel).
+    *   **FREΕPIK CRITICAL REQUIREMENT:** Freepik has its **own specific list of categories**. The category names from Adobe Stock or your general list will **not directly work**.
+    *   **Instruction for AI:** Attempt to select the *closest general theme* based on the input. **However, if no clear, high-confidence mapping can be made to a specific category, output 'Vectors' or 'Illustrations' as a placeholder.** The user (you) will manually review and change this category in the CSV to match one of Freepik's official, current categories before uploading.
+
+**Universal Restriction (Applies to all generated descriptive content for Freepik columns `title` and `tags`):**
+*   Please do not add any 'Intellectual Property' or 'Recognizable Brand name' in the metadata for commercial content.
+
+**General CSV Integrity Note:**
+*   Please ensure that each piece of data for an item (e.g., its full Filename, its full Title, its full list of Tags, its Category) resides entirely within its single, designated CSV column/cell for that row, correctly quoted as specified. Unintended column shifting due to problematic characters or incorrect quoting within a field must be avoided.
+
+**Remember the Icons adhere to our style (this should inform all descriptive content for Freepik columns `title` and `tags`):**
+"solid bold uniform stroke, monochrome, Icon like, centered, isolated on white, flat 2D vector, simple shapes, minimalist design for a consistent Icon pack."
+
+**Important Final Notes for Freepik:**
+*   **JPG Previews:** Remember Freepik requires a JPG preview for each EPS file, and it must have the exact same filename (e.g., `1.eps` and `1.jpg`).
+*   **Freepik CSV Template:** If Freepik provides an official CSV template on their contributor portal, its column names and order take precedence over the common ones used above (`filename`, `title`, `tags`, `category`). Always try to use their official template.
+*   **Category Review:** Re emphasizing that the `category` field will require your manual intervention to match Freepik's specific list.

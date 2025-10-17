@@ -1,0 +1,19 @@
+# Node.js dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Temp files
+*.tar.gz
+*.zip.tmp
+exiftool-*.zip
+exiftool-*.tar.gz
+
+# macOS specific files
+.DS_Store
+.gemini-context.json
+
+# Unnecessary documentation (keep only Desktop-Edition brain)
+🧠 Project-details-brain_Updated_Finale.md
+current_state_for_future_reference.md
